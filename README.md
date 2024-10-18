@@ -11,3 +11,7 @@ A detailed analysis of the data in `datasource/datasource.csv` has been conducte
 - Summary and recommendations
 
 For the full documentation, please refer to [datasource/analysis.md](datasource/analysis.md).
+
+## Material UI Integration
+
+The project now includes Material UI components for a modern and consistent design. For details on the chosen components, color scheme, typography, and overall style, please refer to the Material UI section in [datasource/analysis.md](datasource/analysis.md).
