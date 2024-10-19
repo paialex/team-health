@@ -45,3 +45,13 @@ All notable changes to this project will be documented in this file.
 - Updated `webpack.config.js` to include `publicPath: '/team-health/'` for GitHub Pages deployment.
 - Added a section "## Deployment" in `README.md` with instructions on how to deploy the application to GitHub Pages.
 - Created `docs/deployment.md` with detailed instructions on how to deploy the application to GitHub Pages.
+
+### Error Handling and User Notifications
+- Implemented error handling with try-catch blocks and user-friendly error messages in `data-scripts/update-datasource.js`.
+- Implemented error handling with try-catch blocks and user-friendly error messages in `src/loadData.js`.
+- Added user-friendly error messages in the `main` function of `data-scripts/update-datasource.js`.
+- Added user-friendly error messages in the `loadCSVData` function of `data-scripts/update-datasource.js`.
+- Added user-friendly error messages in the `validateAndFormatData` function of `data-scripts/update-datasource.js`.
+- Added user-friendly error messages in the `loadCSVData` function of `src/loadData.js`.
+- Added user-friendly error messages in the `validateAndFormatData` function of `src/loadData.js`.
+- Added user-friendly error messages in the `handleFeedbackFormSubmission` function of `src/loadData.js`.
