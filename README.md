@@ -1,5 +1,54 @@
 # team-health
 
+## Overview
+
+Team Health is a data analysis and visualization application designed to help teams monitor and improve their performance. The application provides insights into various metrics such as quality, workload, energy, and colleagues' ratings, allowing teams to make data-driven decisions.
+
+## Features
+
+- **Data Analysis**: Analyze data from `datasource/datasource.csv` to understand key metrics and trends.
+- **Visualizations**: Generate line charts, bar graphs, and heat maps to represent data visually.
+- **Interactive Features**: Filter, sort, and hover over data points to get detailed information.
+- **Material UI Integration**: Modern and consistent design using Material UI components.
+- **Dynamic Data Updates**: Automatically update visualizations with new data entries.
+
+## Screenshots
+
+![Dashboard](docs/screenshots/dashboard.png)
+*Dashboard showing various visualizations and metrics.*
+
+![Line Chart](docs/screenshots/line_chart.png)
+*Line chart displaying trends over time.*
+
+![Bar Graph](docs/screenshots/bar_graph.png)
+*Bar graph showing participants count and points engaged.*
+
+## Running the Project Locally
+
+To run the project locally, follow these steps:
+
+1. **Clone the Repository**: Clone the repository to your local machine using the following command:
+   ```bash
+   git clone https://github.com/your-username/team-health.git
+   ```
+
+2. **Navigate to the Project Directory**: Change to the project directory:
+   ```bash
+   cd team-health
+   ```
+
+3. **Install Dependencies**: Install the project dependencies using npm:
+   ```bash
+   npm install
+   ```
+
+4. **Start the Development Server**: Start the development server using the following command:
+   ```bash
+   npm start
+   ```
+
+5. **Open the Application**: Open your web browser and navigate to `http://localhost:3000` to view the application.
+
 ## Data Analysis and Visualization
 
 A detailed analysis of the data in `datasource/datasource.csv` has been conducted to understand the data structure, key metrics, and trends. The analysis includes:
