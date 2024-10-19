@@ -178,3 +178,21 @@ The proposed visualizations have been implemented using Chart.js and integrated 
 - The visualizations have been optimized for readability and performance, ensuring smooth rendering.
 - The visualizations are responsive and interactive, providing a seamless user experience across different devices.
 
+## Dynamic Data Update Feature
+
+### Overview
+
+The application now supports dynamic data updates, allowing it to handle new data entries in `datasource.csv` without requiring code changes. This feature ensures that visualizations automatically reflect any new data.
+
+### Implementation
+
+- **Data Loading Process**: The data loading process in `src/loadData.js` includes mechanisms to detect and handle new data entries dynamically.
+- **Periodic Updates**: A function has been added to periodically check for updates in `datasource.csv` and refresh the data and visualizations accordingly.
+- **Chart.js Integration**: Visualizations created using Chart.js in `index.html` automatically update with new data entries.
+
+### Benefits
+
+- **Real-Time Data**: The application provides real-time data updates, ensuring that users always see the most current information.
+- **Enhanced User Experience**: Users do not need to manually refresh the page or make code changes to see new data.
+- **Scalability**: The dynamic data update feature makes the application more scalable and adaptable to changing data requirements.
+

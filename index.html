@@ -280,6 +280,16 @@
         }
 
         loadAndRenderCharts();
+
+        async function checkForUpdates() {
+            const newData = await loadCSVData();
+            if (JSON.stringify(newData) !== JSON.stringify(data)) {
+                data = newData;
+                applyFiltersAndSorting();
+            }
+        }
+
+        setInterval(checkForUpdates, 60000); // Check for updates every 60 seconds
     </script>
 </body>
 </html>
