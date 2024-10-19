@@ -37,3 +37,11 @@ All notable changes to this project will be documented in this file.
 - Configured `terser` for JavaScript minification in `webpack.config.js`.
 - Configured `cssnano` for CSS minification in `webpack.config.js`.
 - Implemented code splitting and lazy loading configuration in `webpack.config.js`.
+
+### Deployment
+- Configured the repository settings to enable GitHub Pages.
+- Set the deployment branch to `gh-pages`.
+- Updated `index.html` to include `<base href="/team-health/">` for GitHub Pages deployment.
+- Updated `webpack.config.js` to include `publicPath: '/team-health/'` for GitHub Pages deployment.
+- Added a section "## Deployment" in `README.md` with instructions on how to deploy the application to GitHub Pages.
+- Created `docs/deployment.md` with detailed instructions on how to deploy the application to GitHub Pages.
