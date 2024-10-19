@@ -13,62 +13,62 @@
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
   <header class="bg-primary text-white p-4">
-    <nav class="flex justify-between items-center">
+    <nav class="flex justify-between items-center" role="navigation" aria-label="Main Navigation">
       <ul class="flex space-x-4">
-        <li><a href="#home" class="hover:text-secondary">Home</a></li>
-        <li><a href="#about" class="hover:text-secondary">About</a></li>
-        <li><a href="#services" class="hover:text-secondary">Services</a></li>
-        <li><a href="#contact" class="hover:text-secondary">Contact</a></li>
+        <li><a href="#home" class="hover:text-secondary" aria-label="Home">Home</a></li>
+        <li><a href="#about" class="hover:text-secondary" aria-label="About">About</a></li>
+        <li><a href="#services" class="hover:text-secondary" aria-label="Services">Services</a></li>
+        <li><a href="#contact" class="hover:text-secondary" aria-label="Contact">Contact</a></li>
       </ul>
     </nav>
   </header>
   <main class="p-8">
     <h1 class="text-4xl font-bold mb-4">Welcome to Team Health</h1>
     <section id="content" class="mb-8">
-      <canvas id="testChart"></canvas>
+      <canvas id="testChart" role="img" aria-label="Test Chart"></canvas>
     </section>
     <section id="lineCharts" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Line Charts</h2>
-      <canvas id="qualityRatingChart"></canvas>
-      <canvas id="workloadRatingChart"></canvas>
-      <canvas id="energyRatingChart"></canvas>
-      <canvas id="colleaguesRatingChart"></canvas>
-      <canvas id="sprintRatingChart"></canvas>
+      <canvas id="qualityRatingChart" role="img" aria-label="Quality Rating Chart"></canvas>
+      <canvas id="workloadRatingChart" role="img" aria-label="Workload Rating Chart"></canvas>
+      <canvas id="energyRatingChart" role="img" aria-label="Energy Rating Chart"></canvas>
+      <canvas id="colleaguesRatingChart" role="img" aria-label="Colleagues Rating Chart"></canvas>
+      <canvas id="sprintRatingChart" role="img" aria-label="Sprint Rating Chart"></canvas>
     </section>
     <section id="barGraphs" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Bar Graphs</h2>
-      <canvas id="participantsCountChart"></canvas>
-      <canvas id="pointsEngagedChart"></canvas>
-      <canvas id="pointsDeliveredChart"></canvas>
+      <canvas id="participantsCountChart" role="img" aria-label="Participants Count Chart"></canvas>
+      <canvas id="pointsEngagedChart" role="img" aria-label="Points Engaged Chart"></canvas>
+      <canvas id="pointsDeliveredChart" role="img" aria-label="Points Delivered Chart"></canvas>
     </section>
     <section id="heatMaps" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Heat Maps</h2>
-      <canvas id="qualityVsWorkloadChart"></canvas>
-      <canvas id="energyVsSprintChart"></canvas>
+      <canvas id="qualityVsWorkloadChart" role="img" aria-label="Quality vs Workload Chart"></canvas>
+      <canvas id="energyVsSprintChart" role="img" aria-label="Energy vs Sprint Chart"></canvas>
     </section>
     <section id="filters" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Filters and Sorting</h2>
       <div class="mb-4">
         <label for="yearFilter" class="block text-sm font-medium text-gray-700">Year</label>
-        <select id="yearFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+        <select id="yearFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" aria-label="Year Filter">
           <option value="">All Years</option>
         </select>
       </div>
       <div class="mb-4">
         <label for="quarterFilter" class="block text-sm font-medium text-gray-700">Quarter</label>
-        <select id="quarterFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+        <select id="quarterFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" aria-label="Quarter Filter">
           <option value="">All Quarters</option>
         </select>
       </div>
       <div class="mb-4">
         <label for="sprintFilter" class="block text-sm font-medium text-gray-700">Sprint</label>
-        <select id="sprintFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+        <select id="sprintFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" aria-label="Sprint Filter">
           <option value="">All Sprints</option>
         </select>
       </div>
       <div class="mb-4">
         <label for="sortOptions" class="block text-sm font-medium text-gray-700">Sort By</label>
-        <select id="sortOptions" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+        <select id="sortOptions" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" aria-label="Sort Options">
           <option value="Quality_Rating_mean">Quality Rating</option>
           <option value="Workload_Rating_mean">Workload Rating</option>
           <option value="Energy_Rating_mean">Energy Rating</option>
@@ -79,20 +79,20 @@
     </section>
     <section id="feedback" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Feedback</h2>
-      <form id="feedbackForm" class="space-y-4">
+      <form id="feedbackForm" class="space-y-4" aria-label="Feedback Form">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-          <input type="text" id="name" name="name" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required>
+          <input type="text" id="name" name="name" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required aria-required="true" aria-label="Name">
         </div>
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-          <input type="email" id="email" name="email" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required>
+          <input type="email" id="email" name="email" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required aria-required="true" aria-label="Email">
         </div>
         <div>
           <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-          <textarea id="message" name="message" rows="4" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required></textarea>
+          <textarea id="message" name="message" rows="4" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" required aria-required="true" aria-label="Message"></textarea>
         </div>
-        <button type="submit" class="bg-primary text-white py-2 px-4 rounded hover:bg-secondary">Submit</button>
+        <button type="submit" class="bg-primary text-white py-2 px-4 rounded hover:bg-secondary" aria-label="Submit Feedback">Submit</button>
       </form>
     </section>
   </main>
