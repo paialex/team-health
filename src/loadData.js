@@ -34,5 +34,3 @@ function generateBarChartData(data, key) {
 function generateHeatMapData(data, keyX, keyY) {
   return data.map(d => ({ x: d[keyX], y: d[keyY] }));
 }
-
-export { loadCSVData, generateLineChartData, generateBarChartData, generateHeatMapData };
