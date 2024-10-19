@@ -16,45 +16,52 @@ async function loadCSVData() {
 
     if (parsedData.errors.length) {
       console.error('Errors occurred during parsing:', parsedData.errors);
+      alert('An error occurred while parsing the CSV data. Please try again later.');
     } else {
       console.log('Parsed Data:', parsedData.data);
       return validateAndFormatData(parsedData.data);
     }
   } catch (error) {
     console.error('Error loading CSV:', error);
+    alert('An error occurred while loading the CSV data. Please try again later.');
   }
 }
 
 function validateAndFormatData(data) {
-  const validatedData = data.map(entry => {
-    // Validation checks
-    if (typeof entry.Quality_Rating_mean !== 'number' || entry.Quality_Rating_mean < 0 || entry.Quality_Rating_mean > 5) {
-      throw new Error(`Invalid Quality_Rating_mean: ${entry.Quality_Rating_mean}`);
-    }
-    if (typeof entry.Workload_Rating_mean !== 'number' || entry.Workload_Rating_mean < 0 || entry.Workload_Rating_mean > 5) {
-      throw new Error(`Invalid Workload_Rating_mean: ${entry.Workload_Rating_mean}`);
-    }
-    if (typeof entry.Energy_Rating_mean !== 'number' || entry.Energy_Rating_mean < 0 || entry.Energy_Rating_mean > 5) {
-      throw new Error(`Invalid Energy_Rating_mean: ${entry.Energy_Rating_mean}`);
-    }
-    if (typeof entry.Colleagues_Rating_mean !== 'number' || entry.Colleagues_Rating_mean < 0 || entry.Colleagues_Rating_mean > 5) {
-      throw new Error(`Invalid Colleagues_Rating_mean: ${entry.Colleagues_Rating_mean}`);
-    }
-    if (typeof entry.Sprint_Rating_mean !== 'number' || entry.Sprint_Rating_mean < 0 || entry.Sprint_Rating_mean > 10) {
-      throw new Error(`Invalid Sprint_Rating_mean: ${entry.Sprint_Rating_mean}`);
-    }
+  try {
+    const validatedData = data.map(entry => {
+      // Validation checks
+      if (typeof entry.Quality_Rating_mean !== 'number' || entry.Quality_Rating_mean < 0 || entry.Quality_Rating_mean > 5) {
+        throw new Error(`Invalid Quality_Rating_mean: ${entry.Quality_Rating_mean}`);
+      }
+      if (typeof entry.Workload_Rating_mean !== 'number' || entry.Workload_Rating_mean < 0 || entry.Workload_Rating_mean > 5) {
+        throw new Error(`Invalid Workload_Rating_mean: ${entry.Workload_Rating_mean}`);
+      }
+      if (typeof entry.Energy_Rating_mean !== 'number' || entry.Energy_Rating_mean < 0 || entry.Energy_Rating_mean > 5) {
+        throw new Error(`Invalid Energy_Rating_mean: ${entry.Energy_Rating_mean}`);
+      }
+      if (typeof entry.Colleagues_Rating_mean !== 'number' || entry.Colleagues_Rating_mean < 0 || entry.Colleagues_Rating_mean > 5) {
+        throw new Error(`Invalid Colleagues_Rating_mean: ${entry.Colleagues_Rating_mean}`);
+      }
+      if (typeof entry.Sprint_Rating_mean !== 'number' || entry.Sprint_Rating_mean < 0 || entry.Sprint_Rating_mean > 10) {
+        throw new Error(`Invalid Sprint_Rating_mean: ${entry.Sprint_Rating_mean}`);
+      }
 
-    // Formatting checks
-    entry.Quality_Rating_mean = parseFloat(entry.Quality_Rating_mean.toFixed(2));
-    entry.Workload_Rating_mean = parseFloat(entry.Workload_Rating_mean.toFixed(2));
-    entry.Energy_Rating_mean = parseFloat(entry.Energy_Rating_mean.toFixed(2));
-    entry.Colleagues_Rating_mean = parseFloat(entry.Colleagues_Rating_mean.toFixed(2));
-    entry.Sprint_Rating_mean = parseFloat(entry.Sprint_Rating_mean.toFixed(2));
+      // Formatting checks
+      entry.Quality_Rating_mean = parseFloat(entry.Quality_Rating_mean.toFixed(2));
+      entry.Workload_Rating_mean = parseFloat(entry.Workload_Rating_mean.toFixed(2));
+      entry.Energy_Rating_mean = parseFloat(entry.Energy_Rating_mean.toFixed(2));
+      entry.Colleagues_Rating_mean = parseFloat(entry.Colleagues_Rating_mean.toFixed(2));
+      entry.Sprint_Rating_mean = parseFloat(entry.Sprint_Rating_mean.toFixed(2));
 
-    return entry;
-  });
+      return entry;
+    });
 
-  return validatedData;
+    return validatedData;
+  } catch (error) {
+    console.error('Error validating and formatting data:', error);
+    alert('An error occurred while validating and formatting the data. Please try again later.');
+  }
 }
 
 function generateLineChartData(data, key) {
@@ -244,7 +251,7 @@ async function handleFeedbackFormSubmission(event) {
     }
   } catch (error) {
     console.error('Error submitting feedback:', error);
-    alert('An error occurred. Please try again later.');
+    alert('An error occurred while submitting your feedback. Please try again later.');
   }
 }
 
