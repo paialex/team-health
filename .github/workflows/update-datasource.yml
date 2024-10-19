@@ -1,0 +1,27 @@
+name: Update Data Source
+
+on:
+  schedule:
+    - cron: '0 0 1 1 *' # Runs annually on January 1st at midnight
+
+jobs:
+  update-datasource:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update script
+        run: node data-scripts/update-datasource.js
+
+      - name: Validate and format new data
+        run: node src/loadData.js
