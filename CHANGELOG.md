@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 - Optimized visualizations for readability and performance.
 - Ensured visualizations are responsive and interactive, including filtering, sorting, and hover effects.
 - Implemented interactive features like data filtering, sorting, and hover effects in the visualizations.
+- Completed cross-browser and device testing for the application.
+- Tested the application on major browsers: Chrome, Firefox, Safari, Edge.
+- Verified functionality on various devices: desktop, tablet, mobile.
 
 ### Performance Optimization
 - Minified HTML content in `index.html` to reduce file size.

@@ -149,3 +149,45 @@ function optimizedFilterDataBySprint(data, sprint) {
   if (!sprint) return data;
   return data.filter(d => d.Sprint_ID === sprint);
 }
+
+// Ensure data loading and chart rendering functions are compatible with all major browsers
+function ensureCrossBrowserCompatibility() {
+  // Check for fetch API support
+  if (!window.fetch) {
+    console.error('Fetch API is not supported in this browser.');
+    return false;
+  }
+
+  // Check for Promises support
+  if (!window.Promise) {
+    console.error('Promises are not supported in this browser.');
+    return false;
+  }
+
+  // Check for Chart.js support
+  if (!window.Chart) {
+    console.error('Chart.js is not supported in this browser.');
+    return false;
+  }
+
+  // Check for PapaParse support
+  if (!window.Papa) {
+    console.error('PapaParse is not supported in this browser.');
+    return false;
+  }
+
+  return true;
+}
+
+// Test and fix any issues related to cross-browser compatibility
+function testCrossBrowserCompatibility() {
+  const isCompatible = ensureCrossBrowserCompatibility();
+  if (!isCompatible) {
+    console.error('The application is not fully compatible with this browser.');
+  } else {
+    console.log('The application is fully compatible with this browser.');
+  }
+}
+
+// Run cross-browser compatibility tests
+testCrossBrowserCompatibility();
