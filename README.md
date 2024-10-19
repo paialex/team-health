@@ -82,3 +82,15 @@ To deploy the application to GitHub Pages, follow these steps:
    ```
 
 5. **Test Deployment**: Visit the live application URL (e.g., `https://your-username.github.io/team-health/`) to ensure everything is working correctly.
+
+## Providing Feedback
+
+We value your feedback and would love to hear from you. To provide feedback, please use the feedback form available in the application. Follow these steps:
+
+1. **Navigate to the Feedback Section**: Open the application and scroll down to the "Feedback" section.
+
+2. **Fill Out the Form**: Enter your name, email, and message in the respective fields.
+
+3. **Submit the Form**: Click the "Submit" button to send your feedback.
+
+Your feedback will be sent to our team for review, and we will use it to make improvements to the application. Thank you for your valuable input!
