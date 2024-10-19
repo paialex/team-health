@@ -123,3 +123,29 @@ async function checkForUpdates() {
 }
 
 setInterval(checkForUpdates, 60000); // Check for updates every 60 seconds
+
+// Lazy loading for data fetching functions
+async function fetchData() {
+  const { loadCSVData } = await import('./loadData');
+  return loadCSVData();
+}
+
+// Optimized data processing algorithms
+function optimizedSortData(data, key) {
+  return data.sort((a, b) => a[key] - b[key]);
+}
+
+function optimizedFilterDataByYear(data, year) {
+  if (!year) return data;
+  return data.filter(d => d.Year_mode === year);
+}
+
+function optimizedFilterDataByQuarter(data, quarter) {
+  if (!quarter) return data;
+  return data.filter(d => d.Quarter_mode === quarter);
+}
+
+function optimizedFilterDataBySprint(data, sprint) {
+  if (!sprint) return data;
+  return data.filter(d => d.Sprint_ID === sprint);
+}
