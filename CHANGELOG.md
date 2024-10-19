@@ -18,3 +18,4 @@ All notable changes to this project will be documented in this file.
 - Created `data-visualizations` directory within `data` to store visualization files or scripts.
 - Applied Material UI-inspired styling using Tailwind CSS and Google Fonts.
 - Added functionality to load and parse CSV data using JavaScript, including error handling and testing mechanisms.
+- Integrated Chart.js for data visualization and created a simple test bar chart in `index.html`.
