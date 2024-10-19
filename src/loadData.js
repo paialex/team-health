@@ -1,3 +1,5 @@
+import { sendFeedback } from './feedbackService';
+
 async function loadCSVData() {
   try {
     const response = await fetch('data/datasource.csv');
@@ -191,3 +193,27 @@ function testCrossBrowserCompatibility() {
 
 // Run cross-browser compatibility tests
 testCrossBrowserCompatibility();
+
+async function handleFeedbackFormSubmission(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const feedbackData = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message')
+  };
+  try {
+    const response = await sendFeedback(feedbackData);
+    if (response.ok) {
+      alert('Thank you for your feedback!');
+      event.target.reset();
+    } else {
+      alert('Failed to submit feedback. Please try again later.');
+    }
+  } catch (error) {
+    console.error('Error submitting feedback:', error);
+    alert('An error occurred. Please try again later.');
+  }
+}
+
+document.getElementById('feedbackForm').addEventListener('submit', handleFeedbackFormSubmission);

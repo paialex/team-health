@@ -51,6 +51,20 @@ To ensure the application functions correctly across different browsers and devi
 
 5. **Use Testing Tools**: Utilize tools like BrowserStack or Sauce Labs for comprehensive cross-browser and device testing.
 
+## Testing the Feedback Form
+
+To ensure the feedback form works correctly, follow these steps:
+
+1. **Navigate to the Feedback Section**: Open the application and scroll down to the "Feedback" section.
+
+2. **Fill Out the Form**: Enter your name, email, and message in the respective fields.
+
+3. **Submit the Form**: Click the "Submit" button to send your feedback.
+
+4. **Verify Submission**: Ensure that the feedback is successfully submitted and received by the server.
+
+5. **Check for Errors**: Identify and fix any errors or issues encountered during the form submission process.
+
 ## Code of Conduct
 
 Please note that this project is governed by a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
