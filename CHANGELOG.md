@@ -19,3 +19,7 @@ All notable changes to this project will be documented in this file.
 - Applied Material UI-inspired styling using Tailwind CSS and Google Fonts.
 - Added functionality to load and parse CSV data using JavaScript, including error handling and testing mechanisms.
 - Integrated Chart.js for data visualization and created a simple test bar chart in `index.html`.
+- Implemented proposed data visualizations using Chart.js.
+- Integrated visualizations into the HTML structure with Material UI-inspired design.
+- Optimized visualizations for readability and performance.
+- Ensured visualizations are responsive and interactive, including filtering, sorting, and hover effects.

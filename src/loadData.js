@@ -23,4 +23,16 @@ async function loadCSVData() {
   }
 }
 
-export { loadCSVData };
+function generateLineChartData(data, key) {
+  return data.map(d => d[key]);
+}
+
+function generateBarChartData(data, key) {
+  return data.map(d => d[key]);
+}
+
+function generateHeatMapData(data, keyX, keyY) {
+  return data.map(d => ({ x: d[keyX], y: d[keyY] }));
+}
+
+export { loadCSVData, generateLineChartData, generateBarChartData, generateHeatMapData };
