@@ -18,6 +18,11 @@ const theme = createTheme({
         '@apply bg-primary text-white': {},
       },
     },
+    MuiCard: {
+      root: {
+        '@apply bg-white shadow-md rounded p-4': {},
+      },
+    },
   },
 });
 
