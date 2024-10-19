@@ -94,3 +94,37 @@ We value your feedback and would love to hear from you. To provide feedback, ple
 3. **Submit the Form**: Click the "Submit" button to send your feedback.
 
 Your feedback will be sent to our team for review, and we will use it to make improvements to the application. Thank you for your valuable input!
+
+## Updating `datasource.csv` Annually
+
+To ensure that the data in `datasource.csv` is up-to-date, follow these steps to update it annually:
+
+1. **Data Collection**: Collect the new data for the year.
+2. **Data Formatting**: Ensure the new data is formatted correctly according to the structure of `datasource.csv`.
+3. **Data Validation**: Validate the new data to ensure accuracy and consistency.
+4. **Data Integration**: Integrate the new data into `datasource.csv`.
+5. **Data Backup**: Create a backup of the previous `datasource.csv` file before making any changes.
+6. **Data Update**: Replace the old `datasource.csv` file with the updated one.
+7. **Data Verification**: Verify that the new data has been correctly integrated and is reflected in the application.
+
+### Instructions for Validating and Formatting New Data
+
+1. **Data Formatting**:
+   - Ensure that the new data follows the same column structure as `datasource.csv`.
+   - Use consistent data types for each column (e.g., integers for ratings, strings for dates).
+   - Check for any missing or incomplete data entries and address them.
+
+2. **Data Validation**:
+   - Verify the accuracy of the new data by cross-referencing with the original data sources.
+   - Check for any outliers or anomalies in the data and investigate their causes.
+   - Ensure that the new data is consistent with the existing data in terms of format and values.
+
+### Automating Data Updates
+
+To automate the annual update process for `datasource.csv`, follow these steps:
+
+1. **Create a Script**: Develop a script to automate the data collection, formatting, validation, and integration processes.
+2. **Schedule the Script**: Use a scheduling tool (e.g., cron jobs, GitHub Actions) to run the script annually.
+3. **Notify Users**: Implement a notification system to inform users of the data update within the application.
+
+By following these steps, the process of updating `datasource.csv` annually can be streamlined and automated, ensuring that the application always has the most up-to-date data.
