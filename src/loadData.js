@@ -1,5 +1,3 @@
-import { sendFeedback } from './feedbackService';
-
 async function loadCSVData() {
   try {
     const response = await fetch('data/datasource.csv');
@@ -165,32 +163,6 @@ async function checkForUpdates() {
 
 setInterval(checkForUpdates, 60000); // Check for updates every 60 seconds
 
-// Lazy loading for data fetching functions
-async function fetchData() {
-  const { loadCSVData } = await import('./loadData');
-  return loadCSVData();
-}
-
-// Optimized data processing algorithms
-function optimizedSortData(data, key) {
-  return data.sort((a, b) => a[key] - b[key]);
-}
-
-function optimizedFilterDataByYear(data, year) {
-  if (!year) return data;
-  return data.filter(d => d.Year_mode === year);
-}
-
-function optimizedFilterDataByQuarter(data, quarter) {
-  if (!quarter) return data;
-  return data.filter(d => d.Quarter_mode === quarter);
-}
-
-function optimizedFilterDataBySprint(data, sprint) {
-  if (!sprint) return data;
-  return data.filter(d => d.Sprint_ID === sprint);
-}
-
 // Ensure data loading and chart rendering functions are compatible with all major browsers
 function ensureCrossBrowserCompatibility() {
   // Check for fetch API support
@@ -242,7 +214,13 @@ async function handleFeedbackFormSubmission(event) {
     message: formData.get('message')
   };
   try {
-    const response = await sendFeedback(feedbackData);
+    const response = await fetch('/submit-feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(feedbackData)
+    });
     if (response.ok) {
       alert('Thank you for your feedback!');
       event.target.reset();
@@ -251,7 +229,7 @@ async function handleFeedbackFormSubmission(event) {
     }
   } catch (error) {
     console.error('Error submitting feedback:', error);
-    alert('An error occurred while submitting your feedback. Please try again later.');
+    alert('An error occurred. Please try again later.');
   }
 }
 
