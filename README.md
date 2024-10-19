@@ -49,6 +49,15 @@ To run the project locally, follow these steps:
 
 5. **Open the Application**: Open your web browser and navigate to `http://localhost:3000` to view the application.
 
+## Running and Stopping the App
+
+To run the app, use the following command:
+```bash
+npm start
+```
+
+To stop the app, use `Ctrl+C` in the terminal where the app is running.
+
 ## Data Analysis and Visualization
 
 A detailed analysis of the data in `datasource/datasource.csv` has been conducted to understand the data structure, key metrics, and trends. The analysis includes:
