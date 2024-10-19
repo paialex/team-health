@@ -12,6 +12,13 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',
   },
+  overrides: {
+    MuiButton: {
+      root: {
+        '@apply bg-primary text-white': {},
+      },
+    },
+  },
 });
 
 export default theme;
