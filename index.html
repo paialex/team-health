@@ -1,1 +1,283 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Team Health</title><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js" defer></script><script src="src/loadData.js" defer></script><script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script></head><body class="bg-gray-100 text-gray-900 font-sans"><header class="bg-primary text-white p-4"><nav class="flex justify-between items-center"><ul class="flex space-x-4"><li><a href="#home" class="hover:text-secondary">Home</a></li><li><a href="#about" class="hover:text-secondary">About</a></li><li><a href="#services" class="hover:text-secondary">Services</a></li><li><a href="#contact" class="hover:text-secondary">Contact</a></li></ul></nav></header><main class="p-8"><h1 class="text-4xl font-bold mb-4">Welcome to Team Health</h1><section id="content" class="mb-8"><canvas id="testChart"></canvas></section><section id="lineCharts" class="mb-8"><h2 class="text-2xl font-bold mb-4">Line Charts</h2><canvas id="qualityRatingChart"></canvas><canvas id="workloadRatingChart"></canvas><canvas id="energyRatingChart"></canvas><canvas id="colleaguesRatingChart"></canvas><canvas id="sprintRatingChart"></canvas></section><section id="barGraphs" class="mb-8"><h2 class="text-2xl font-bold mb-4">Bar Graphs</h2><canvas id="participantsCountChart"></canvas><canvas id="pointsEngagedChart"></canvas><canvas id="pointsDeliveredChart"></canvas></section><section id="heatMaps" class="mb-8"><h2 class="text-2xl font-bold mb-4">Heat Maps</h2><canvas id="qualityVsWorkloadChart"></canvas><canvas id="energyVsSprintChart"></canvas></section><section id="filters" class="mb-8"><h2 class="text-2xl font-bold mb-4">Filters and Sorting</h2><div class="mb-4"><label for="yearFilter" class="block text-sm font-medium text-gray-700">Year</label><select id="yearFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"><option value="">All Years</option></select></div><div class="mb-4"><label for="quarterFilter" class="block text-sm font-medium text-gray-700">Quarter</label><select id="quarterFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"><option value="">All Quarters</option></select></div><div class="mb-4"><label for="sprintFilter" class="block text-sm font-medium text-gray-700">Sprint</label><select id="sprintFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"><option value="">All Sprints</option></select></div><div class="mb-4"><label for="sortOptions" class="block text-sm font-medium text-gray-700">Sort By</label><select id="sortOptions" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"><option value="Quality_Rating_mean">Quality Rating</option><option value="Workload_Rating_mean">Workload Rating</option><option value="Energy_Rating_mean">Energy Rating</option><option value="Colleagues_Rating_mean">Colleagues Rating</option><option value="Sprint_Rating_mean">Sprint Rating</option></select></div></section></main><footer class="bg-gray-800 text-white p-4"></footer><script>async function loadAndRenderCharts(){const data=await loadCSVData();const qualityRatingData=data.map(d=>d.Quality_Rating_mean);const workloadRatingData=data.map(d=>d.Workload_Rating_mean);const energyRatingData=data.map(d=>d.Energy_Rating_mean);const colleaguesRatingData=data.map(d=>d.Colleagues_Rating_mean);const sprintRatingData=data.map(d=>d.Sprint_Rating_mean);const participantsCountData=data.map(d=>d.Participants_Count);const pointsEngagedData=data.map(d=>d.Points_Engaged);const pointsDeliveredData=data.map(d=>d.Points_Delivered);const labels=data.map(d=>d.Sprint_ID);const createLineChart=(ctx,label,data)=>{return new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:label,data:data,borderColor:'rgba(75, 192, 192, 1)',backgroundColor:'rgba(75, 192, 192, 0.2)',borderWidth:1}]},options:{responsive:true,scales:{y:{beginAtZero:true}},plugins:{tooltip:{callbacks:{label:function(context){return`${context.dataset.label}: ${context.raw}`;}}}}}});};const createBarChart=(ctx,label,data)=>{return new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[{label:label,data:data,backgroundColor:'rgba(153, 102, 255, 0.2)',borderColor:'rgba(153, 102, 255, 1)',borderWidth:1}]},options:{responsive:true,scales:{y:{beginAtZero:true}},plugins:{tooltip:{callbacks:{label:function(context){return`${context.dataset.label}: ${context.raw}`;}}}}}});};const createHeatMap=(ctx,label,dataX,dataY)=>{return new Chart(ctx,{type:'scatter',data:{datasets:[{label:label,data:dataX.map((x,i)=>({x:x,y:dataY[i]})),backgroundColor:'rgba(255, 99, 132, 0.2)',borderColor:'rgba(255, 99, 132, 1)',borderWidth:1}]},options:{responsive:true,scales:{x:{beginAtZero:true},y:{beginAtZero:true}},plugins:{tooltip:{callbacks:{label:function(context){return`${context.dataset.label}: (${context.raw.x}, ${context.raw.y})`;}}}}}});};createLineChart(document.getElementById('qualityRatingChart').getContext('2d'),'Quality Rating Mean',qualityRatingData);createLineChart(document.getElementById('workloadRatingChart').getContext('2d'),'Workload Rating Mean',workloadRatingData);createLineChart(document.getElementById('energyRatingChart').getContext('2d'),'Energy Rating Mean',energyRatingData);createLineChart(document.getElementById('colleaguesRatingChart').getContext('2d'),'Colleagues Rating Mean',colleaguesRatingData);createLineChart(document.getElementById('sprintRatingChart').getContext('2d'),'Sprint Rating Mean',sprintRatingData);createBarChart(document.getElementById('participantsCountChart').getContext('2d'),'Participants Count',participantsCountData);createBarChart(document.getElementById('pointsEngagedChart').getContext('2d'),'Points Engaged',pointsEngagedData);createBarChart(document.getElementById('pointsDeliveredChart').getContext('2d'),'Points Delivered',pointsDeliveredData);createHeatMap(document.getElementById('qualityVsWorkloadChart').getContext('2d'),'Quality vs Workload',qualityRatingData,workloadRatingData);createHeatMap(document.getElementById('energyVsSprintChart').getContext('2d'),'Energy vs Sprint',energyRatingData,sprintRatingData);document.getElementById('yearFilter').addEventListener('change',applyFiltersAndSorting);document.getElementById('quarterFilter').addEventListener('change',applyFiltersAndSorting);document.getElementById('sprintFilter').addEventListener('change',applyFiltersAndSorting);document.getElementById('sortOptions').addEventListener('change',applyFiltersAndSorting);function applyFiltersAndSorting(){const year=document.getElementById('yearFilter').value;const quarter=document.getElementById('quarterFilter').value;const sprint=document.getElementById('sprintFilter').value;const sortBy=document.getElementById('sortOptions').value;let filteredData=data;if(year){filteredData=filterDataByYear(filteredData,year);}if(quarter){filteredData=filterDataByQuarter(filteredData,quarter);}if(sprint){filteredData=filterDataBySprint(filteredData,sprint);}if(sortBy){filteredData=sortData(filteredData,sortBy);}updateCharts(filteredData);}function updateCharts(filteredData){const updatedQualityRatingData=filteredData.map(d=>d.Quality_Rating_mean);const updatedWorkloadRatingData=filteredData.map(d=>d.Workload_Rating_mean);const updatedEnergyRatingData=filteredData.map(d=>d.Energy_Rating_mean);const updatedColleaguesRatingData=filteredData.map(d=>d.Colleagues_Rating_mean);const updatedSprintRatingData=filteredData.map(d=>d.Sprint_Rating_mean);const updatedParticipantsCountData=filteredData.map(d=>d.Participants_Count);const updatedPointsEngagedData=filteredData.map(d=>d.Points_Engaged);const updatedPointsDeliveredData=filteredData.map(d=>d.Points_Delivered);const updatedLabels=filteredData.map(d=>d.Sprint_ID);updateChart(qualityRatingChart,updatedLabels,updatedQualityRatingData);updateChart(workloadRatingChart,updatedLabels,updatedWorkloadRatingData);updateChart(energyRatingChart,updatedLabels,updatedEnergyRatingData);updateChart(colleaguesRatingChart,updatedLabels,updatedColleaguesRatingData);updateChart(sprintRatingChart,updatedLabels,updatedSprintRatingData);updateChart(participantsCountChart,updatedLabels,updatedParticipantsCountData);updateChart(pointsEngagedChart,updatedLabels,updatedPointsEngagedData);updateChart(pointsDeliveredChart,updatedLabels,updatedPointsDeliveredData);updateHeatMap(qualityVsWorkloadChart,updatedQualityRatingData,updatedWorkloadRatingData);updateHeatMap(energyVsSprintChart,updatedEnergyRatingData,updatedSprintRatingData);}function updateChart(chart,labels,data){chart.data.labels=labels;chart.data.datasets[0].data=data;chart.update();}function updateHeatMap(chart,dataX,dataY){chart.data.datasets[0].data=dataX.map((x,i)=>({x:x,y:dataY[i]}));chart.update();}}loadAndRenderCharts();async function checkForUpdates(){const newData=await loadCSVData();if(JSON.stringify(newData)!==JSON.stringify(data)){data=newData;applyFiltersAndSorting();}}setInterval(checkForUpdates,60000);</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Health</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js" defer></script>
+  <script src="src/loadData.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <header class="bg-primary text-white p-4">
+    <nav class="flex justify-between items-center">
+      <ul class="flex space-x-4">
+        <li><a href="#home" class="hover:text-secondary">Home</a></li>
+        <li><a href="#about" class="hover:text-secondary">About</a></li>
+        <li><a href="#services" class="hover:text-secondary">Services</a></li>
+        <li><a href="#contact" class="hover:text-secondary">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="p-8">
+    <h1 class="text-4xl font-bold mb-4">Welcome to Team Health</h1>
+    <section id="content" class="mb-8">
+      <canvas id="testChart"></canvas>
+    </section>
+    <section id="lineCharts" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Line Charts</h2>
+      <canvas id="qualityRatingChart"></canvas>
+      <canvas id="workloadRatingChart"></canvas>
+      <canvas id="energyRatingChart"></canvas>
+      <canvas id="colleaguesRatingChart"></canvas>
+      <canvas id="sprintRatingChart"></canvas>
+    </section>
+    <section id="barGraphs" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Bar Graphs</h2>
+      <canvas id="participantsCountChart"></canvas>
+      <canvas id="pointsEngagedChart"></canvas>
+      <canvas id="pointsDeliveredChart"></canvas>
+    </section>
+    <section id="heatMaps" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Heat Maps</h2>
+      <canvas id="qualityVsWorkloadChart"></canvas>
+      <canvas id="energyVsSprintChart"></canvas>
+    </section>
+    <section id="filters" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Filters and Sorting</h2>
+      <div class="mb-4">
+        <label for="yearFilter" class="block text-sm font-medium text-gray-700">Year</label>
+        <select id="yearFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+          <option value="">All Years</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="quarterFilter" class="block text-sm font-medium text-gray-700">Quarter</label>
+        <select id="quarterFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+          <option value="">All Quarters</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="sprintFilter" class="block text-sm font-medium text-gray-700">Sprint</label>
+        <select id="sprintFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+          <option value="">All Sprints</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="sortOptions" class="block text-sm font-medium text-gray-700">Sort By</label>
+        <select id="sortOptions" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+          <option value="Quality_Rating_mean">Quality Rating</option>
+          <option value="Workload_Rating_mean">Workload Rating</option>
+          <option value="Energy_Rating_mean">Energy Rating</option>
+          <option value="Colleagues_Rating_mean">Colleagues Rating</option>
+          <option value="Sprint_Rating_mean">Sprint Rating</option>
+        </select>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-gray-800 text-white p-4"></footer>
+  <script>
+    async function loadAndRenderCharts() {
+      const data = await loadCSVData();
+      const qualityRatingData = data.map(d => d.Quality_Rating_mean);
+      const workloadRatingData = data.map(d => d.Workload_Rating_mean);
+      const energyRatingData = data.map(d => d.Energy_Rating_mean);
+      const colleaguesRatingData = data.map(d => d.Colleagues_Rating_mean);
+      const sprintRatingData = data.map(d => d.Sprint_Rating_mean);
+      const participantsCountData = data.map(d => d.Participants_Count);
+      const pointsEngagedData = data.map(d => d.Points_Engaged);
+      const pointsDeliveredData = data.map(d => d.Points_Delivered);
+      const labels = data.map(d => d.Sprint_ID);
+
+      const createLineChart = (ctx, label, data) => {
+        return new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return `${context.dataset.label}: ${context.raw}`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      };
+
+      const createBarChart = (ctx, label, data) => {
+        return new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: label,
+              data: data,
+              backgroundColor: 'rgba(153, 102, 255, 0.2)',
+              borderColor: 'rgba(153, 102, 255, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return `${context.dataset.label}: ${context.raw}`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      };
+
+      const createHeatMap = (ctx, label, dataX, dataY) => {
+        return new Chart(ctx, {
+          type: 'scatter',
+          data: {
+            datasets: [{
+              label: label,
+              data: dataX.map((x, i) => ({ x: x, y: dataY[i] })),
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                beginAtZero: true
+              },
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return `${context.dataset.label}: (${context.raw.x}, ${context.raw.y})`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      };
+
+      createLineChart(document.getElementById('qualityRatingChart').getContext('2d'), 'Quality Rating Mean', qualityRatingData);
+      createLineChart(document.getElementById('workloadRatingChart').getContext('2d'), 'Workload Rating Mean', workloadRatingData);
+      createLineChart(document.getElementById('energyRatingChart').getContext('2d'), 'Energy Rating Mean', energyRatingData);
+      createLineChart(document.getElementById('colleaguesRatingChart').getContext('2d'), 'Colleagues Rating Mean', colleaguesRatingData);
+      createLineChart(document.getElementById('sprintRatingChart').getContext('2d'), 'Sprint Rating Mean', sprintRatingData);
+      createBarChart(document.getElementById('participantsCountChart').getContext('2d'), 'Participants Count', participantsCountData);
+      createBarChart(document.getElementById('pointsEngagedChart').getContext('2d'), 'Points Engaged', pointsEngagedData);
+      createBarChart(document.getElementById('pointsDeliveredChart').getContext('2d'), 'Points Delivered', pointsDeliveredData);
+      createHeatMap(document.getElementById('qualityVsWorkloadChart').getContext('2d'), 'Quality vs Workload', qualityRatingData, workloadRatingData);
+      createHeatMap(document.getElementById('energyVsSprintChart').getContext('2d'), 'Energy vs Sprint', energyRatingData, sprintRatingData);
+
+      document.getElementById('yearFilter').addEventListener('change', applyFiltersAndSorting);
+      document.getElementById('quarterFilter').addEventListener('change', applyFiltersAndSorting);
+      document.getElementById('sprintFilter').addEventListener('change', applyFiltersAndSorting);
+      document.getElementById('sortOptions').addEventListener('change', applyFiltersAndSorting);
+
+      function applyFiltersAndSorting() {
+        const year = document.getElementById('yearFilter').value;
+        const quarter = document.getElementById('quarterFilter').value;
+        const sprint = document.getElementById('sprintFilter').value;
+        const sortBy = document.getElementById('sortOptions').value;
+
+        let filteredData = data;
+        if (year) {
+          filteredData = filterDataByYear(filteredData, year);
+        }
+        if (quarter) {
+          filteredData = filterDataByQuarter(filteredData, quarter);
+        }
+        if (sprint) {
+          filteredData = filterDataBySprint(filteredData, sprint);
+        }
+        if (sortBy) {
+          filteredData = sortData(filteredData, sortBy);
+        }
+
+        updateCharts(filteredData);
+      }
+
+      function updateCharts(filteredData) {
+        const updatedQualityRatingData = filteredData.map(d => d.Quality_Rating_mean);
+        const updatedWorkloadRatingData = filteredData.map(d => d.Workload_Rating_mean);
+        const updatedEnergyRatingData = filteredData.map(d => d.Energy_Rating_mean);
+        const updatedColleaguesRatingData = filteredData.map(d => d.Colleagues_Rating_mean);
+        const updatedSprintRatingData = filteredData.map(d => d.Sprint_Rating_mean);
+        const updatedParticipantsCountData = filteredData.map(d => d.Participants_Count);
+        const updatedPointsEngagedData = filteredData.map(d => d.Points_Engaged);
+        const updatedPointsDeliveredData = filteredData.map(d => d.Points_Delivered);
+
+        const updatedLabels = filteredData.map(d => d.Sprint_ID);
+
+        updateChart(qualityRatingChart, updatedLabels, updatedQualityRatingData);
+        updateChart(workloadRatingChart, updatedLabels, updatedWorkloadRatingData);
+        updateChart(energyRatingChart, updatedLabels, updatedEnergyRatingData);
+        updateChart(colleaguesRatingChart, updatedLabels, updatedColleaguesRatingData);
+        updateChart(sprintRatingChart, updatedLabels, updatedSprintRatingData);
+        updateChart(participantsCountChart, updatedLabels, updatedParticipantsCountData);
+        updateChart(pointsEngagedChart, updatedLabels, updatedPointsEngagedData);
+        updateChart(pointsDeliveredChart, updatedLabels, updatedPointsDeliveredData);
+        updateHeatMap(qualityVsWorkloadChart, updatedQualityRatingData, updatedWorkloadRatingData);
+        updateHeatMap(energyVsSprintChart, updatedEnergyRatingData, updatedSprintRatingData);
+      }
+
+      function updateChart(chart, labels, data) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = data;
+        chart.update();
+      }
+
+      function updateHeatMap(chart, dataX, dataY) {
+        chart.data.datasets[0].data = dataX.map((x, i) => ({ x: x, y: dataY[i] }));
+        chart.update();
+      }
+    }
+
+    loadAndRenderCharts();
+
+    async function checkForUpdates() {
+      const newData = await loadCSVData();
+      if (JSON.stringify(newData) !== JSON.stringify(data)) {
+        data = newData;
+        applyFiltersAndSorting();
+      }
+    }
+
+    setInterval(checkForUpdates, 60000);
+  </script>
+</body>
+</html>
