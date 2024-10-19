@@ -23,3 +23,4 @@ All notable changes to this project will be documented in this file.
 - Integrated visualizations into the HTML structure with Material UI-inspired design.
 - Optimized visualizations for readability and performance.
 - Ensured visualizations are responsive and interactive, including filtering, sorting, and hover effects.
+- Implemented interactive features like data filtering, sorting, and hover effects in the visualizations.
