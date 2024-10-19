@@ -46,7 +46,38 @@
             <canvas id="energyVsSprintChart"></canvas>
         </section>
         <section id="filters" class="mb-8">
-            <!-- Filters placeholder -->
+            <h2 class="text-2xl font-bold mb-4">Filters and Sorting</h2>
+            <div class="mb-4">
+                <label for="yearFilter" class="block text-sm font-medium text-gray-700">Year</label>
+                <select id="yearFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                    <option value="">All Years</option>
+                    <!-- Add options dynamically -->
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="quarterFilter" class="block text-sm font-medium text-gray-700">Quarter</label>
+                <select id="quarterFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                    <option value="">All Quarters</option>
+                    <!-- Add options dynamically -->
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="sprintFilter" class="block text-sm font-medium text-gray-700">Sprint</label>
+                <select id="sprintFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                    <option value="">All Sprints</option>
+                    <!-- Add options dynamically -->
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="sortOptions" class="block text-sm font-medium text-gray-700">Sort By</label>
+                <select id="sortOptions" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                    <option value="Quality_Rating_mean">Quality Rating</option>
+                    <option value="Workload_Rating_mean">Workload Rating</option>
+                    <option value="Energy_Rating_mean">Energy Rating</option>
+                    <option value="Colleagues_Rating_mean">Colleagues Rating</option>
+                    <option value="Sprint_Rating_mean">Sprint Rating</option>
+                </select>
+            </div>
         </section>
     </main>
     <footer class="bg-gray-800 text-white p-4">
@@ -86,6 +117,15 @@
                             y: {
                                 beginAtZero: true
                             }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}`;
+                                    }
+                                }
+                            }
                         }
                     }
                 });
@@ -109,6 +149,15 @@
                         scales: {
                             y: {
                                 beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}`;
+                                    }
+                                }
                             }
                         }
                     }
@@ -135,6 +184,15 @@
                             },
                             y: {
                                 beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: (${context.raw.x}, ${context.raw.y})`;
+                                    }
+                                }
                             }
                         }
                     }

@@ -34,3 +34,22 @@ function generateBarChartData(data, key) {
 function generateHeatMapData(data, keyX, keyY) {
   return data.map(d => ({ x: d[keyX], y: d[keyY] }));
 }
+
+function filterDataByYear(data, year) {
+  if (!year) return data;
+  return data.filter(d => d.Year_mode === year);
+}
+
+function filterDataByQuarter(data, quarter) {
+  if (!quarter) return data;
+  return data.filter(d => d.Quarter_mode === quarter);
+}
+
+function filterDataBySprint(data, sprint) {
+  if (!sprint) return data;
+  return data.filter(d => d.Sprint_ID === sprint);
+}
+
+function sortData(data, key) {
+  return data.sort((a, b) => a[key] - b[key]);
+}
