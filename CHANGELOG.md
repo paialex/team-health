@@ -24,3 +24,13 @@ All notable changes to this project will be documented in this file.
 - Optimized visualizations for readability and performance.
 - Ensured visualizations are responsive and interactive, including filtering, sorting, and hover effects.
 - Implemented interactive features like data filtering, sorting, and hover effects in the visualizations.
+
+### Performance Optimization
+- Minified HTML content in `index.html` to reduce file size.
+- Added `defer` attribute to script tags in `index.html` for non-blocking loading.
+- Implemented code splitting using dynamic imports for heavy components in `src/loadData.js`.
+- Optimized data processing algorithms for speed improvements in `src/loadData.js`.
+- Added lazy loading for data fetching functions in `src/loadData.js`.
+- Configured `terser` for JavaScript minification in `webpack.config.js`.
+- Configured `cssnano` for CSS minification in `webpack.config.js`.
+- Implemented code splitting and lazy loading configuration in `webpack.config.js`.
